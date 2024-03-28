@@ -1,0 +1,51 @@
+{
+	"characterDefinition" : 
+		{
+			"classType": "human",
+			"gender": "male",
+			"body": "",
+			"characterName": "Mysterious Rogue",
+			"characterPresetSpritePath": "res://assets/npc_characters/rogue_hero/Rogue_.png",
+			"startingGear": [],
+			"classStats":[
+				{
+					"statType": "health",
+					"statName": "Health",
+					"maxStatValue": 100,
+				},
+				{
+					"statType": "stamina",
+					"statName": "Stamina",
+					"maxStatValue": 100,
+				},
+				{
+					"statType": "magic",
+					"statName": "Magic",
+					"maxStatValue": 100,
+				}
+			],
+			"classAttributes":[
+				{
+					"attributeType": "moveSpeed",
+					"attributeName": "Move Speed",
+					"maxAttributeValue": 200
+				},
+				{
+					"attributeType": "damageResistance",
+					"attributeName": "Damage Resistance",
+					"maxAttributeValue": 10
+				},
+				{
+					"attributeType": "magicResistance",
+					"attributeName": "Magic Resistance",
+					"maxAttributeValue": 0
+				},
+				{
+					"attributeType": "carryWeight",
+					"attributeName": "Carry Weight",
+					"maxAttributeValue": 100
+				}
+			]
+		}
+	
+}

@@ -1,0 +1,14 @@
+join player 0 [animation="Fade In Up"]
+player: Hello, Who's there?
+player: Where... Where am I?
+[wait time="0.1" hide_text="false"]
+join mysterious_rogue 1
+mysterious_rogue: In a place you'd rather not be. Now quick, it's time to leave.
+player: Wait, Who are you?
+mysterious_rogue: Someone who can make your problems disappear. Now, use this wisely.
+player: Why are you helping me?
+leave mysterious_rogue
+mysterious_rogue: Some questions are better left unanswered.\
+Now I need to leave before the guards catch up.
+[signal arg="give_starting_objects"]
+player: "Fate favors the bold." What does that mean?

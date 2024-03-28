@@ -1,0 +1,5 @@
+extends Node
+class_name overworld_transition
+
+var room_entry_point
+var transition_direction

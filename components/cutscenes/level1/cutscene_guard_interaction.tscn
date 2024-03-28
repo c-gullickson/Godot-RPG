@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://jumk6vfsqf7y"]
+
+[ext_resource type="Script" path="res://components/level_managers/level_1/level_1_cutscene_guard_interaction.gd" id="1_av5m6"]
+[ext_resource type="PackedScene" uid="uid://cjjnjbqwwiqwc" path="res://scenes/Characters/character_dungeon_guard_1.tscn" id="2_we3el"]
+
+[sub_resource type="Curve2D" id="Curve2D_a4ov1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -221, 0, 0, 0, 0, 0, -282, 0)
+}
+point_count = 2
+
+[node name="cutscene_guard_interaction" type="Node2D"]
+position = Vector2(1184, 392)
+script = ExtResource("1_av5m6")
+
+[node name="spawn_position_dugeon_guard_1" type="Node2D" parent="."]
+position = Vector2(-221, 0)
+
+[node name="end_position_dungeon_guard_1" type="Node2D" parent="."]
+position = Vector2(-279, 0)
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_a4ov1")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-221, 0)
+rotation = 3.14159
+rotates = false
+loop = false
+
+[node name="character_dungeon_guard_1" parent="Path2D/PathFollow2D" instance=ExtResource("2_we3el")]
+rotation = 3.14159

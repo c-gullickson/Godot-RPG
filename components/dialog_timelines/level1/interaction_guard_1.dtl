@@ -1,0 +1,12 @@
+join dungeon_guard_1 0
+dungeon_guard_1: Hold it!\
+Where do you think you are going??
+player: I am just trying to find my way out of this place.\
+Can you help?
+dungeon_guard_1: HELP?\
+You must be out of your mind.\
+Back to your cell
+player: Look, I have information....\
+Important stuff.\
+Let me go and I can make it worth your while.
+dungeon_guard_1: Information huh?

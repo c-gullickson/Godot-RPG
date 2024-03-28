@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://0apq18pm0ddd"]
+
+[ext_resource type="Script" path="res://components/npc_character/NPC_Character.gd" id="1_43xy4"]
+[ext_resource type="Script" path="res://addons/LPCAnimatedSprite/LPCAnimatedSprite2D.gd" id="2_1u583"]
+[ext_resource type="Script" path="res://components/character/Character_CharacterAnimationComponent.gd" id="3_lxhmp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_umlkt"]
+size = Vector2(24, 12)
+
+[node name="character_rogue" type="CharacterBody2D"]
+script = ExtResource("1_43xy4")
+character_data_path = "res://assets/npc_characters/rogue_hero/data.json"
+
+[node name="LPCAnimatedSprite2D" type="Node2D" parent="."]
+script = ExtResource("2_1u583")
+
+[node name="CharacterAnimationComponent" type="Node2D" parent="."]
+script = ExtResource("3_lxhmp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 24)
+shape = SubResource("RectangleShape2D_umlkt")

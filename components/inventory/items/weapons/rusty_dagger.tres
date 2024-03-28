@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="weapon_item_data" load_steps=3 format=3 uid="uid://cpga4yjcagh83"]
+
+[ext_resource type="Texture2D" uid="uid://de32jb7msh83s" path="res://assets/spritesheets/weapon/sword/dagger/dagger.png" id="1_0rcsd"]
+[ext_resource type="Script" path="res://components/inventory/item_data/weapon_item_data.gd" id="1_higv5"]
+
+[resource]
+script = ExtResource("1_higv5")
+attack_type = 0
+base_physical_damage = 3
+base_magical_damage = 0
+stamina_cost = 10
+magic_cost = 0
+is_multitarget = false
+max_targets = 0
+is_multihit = false
+max_hits = 0
+item_type = 1
+item_name = "Rusty Dagger"
+item_description = "A small dagger weathered by the elements, capable of inflicting minor damage"
+item_texture = ExtResource("1_0rcsd")
+item_weight = 0.0
+item_is_equipable = true

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="item_data" load_steps=3 format=3 uid="uid://bbbfo3t3q7inj"]
+
+[ext_resource type="Script" path="res://components/inventory/item_data/item_data.gd" id="1_ox601"]
+[ext_resource type="Texture2D" uid="uid://b63idweqax8gw" path="res://assets/items/old_cell_key.png" id="1_xsmla"]
+
+[resource]
+script = ExtResource("1_ox601")
+item_type = 0
+item_name = "Dungeon Cell Key"
+item_description = "Old key to open cell doors in the dungon"
+item_texture = ExtResource("1_xsmla")
+item_weight = 0.0
+item_is_equipable = false

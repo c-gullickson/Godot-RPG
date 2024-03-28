@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bksxlxheidymt"]
+
+[ext_resource type="Script" path="res://components/user_interface/stat_progress.gd" id="1_jpl0q"]
+
+[node name="stat_progress" type="HBoxContainer"]
+size_flags_horizontal = 0
+script = ExtResource("1_jpl0q")
+
+[node name="stat_label" type="Label" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Stat
+"
+
+[node name="stat_bar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(250, 24)
+layout_mode = 2
+value = 30.0
+show_percentage = false

@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://brxtehye4fnnc"]
+
+[ext_resource type="Script" path="res://components/user_interface/main menu/main_menu.gd" id="1_mb55i"]
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mb55i")
+
+[node name="panel_background" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="panel_background"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="new_game_button" type="Button" parent="panel_background/VBoxContainer"]
+layout_mode = 2
+text = "Start Game"
+
+[node name="load_character_button" type="Button" parent="panel_background/VBoxContainer"]
+layout_mode = 2
+text = "Load Character"
+
+[connection signal="pressed" from="panel_background/VBoxContainer/new_game_button" to="." method="_on_new_game_button_pressed"]

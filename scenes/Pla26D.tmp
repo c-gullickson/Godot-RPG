@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgw4olbqjsqhb"]
+
+[ext_resource type="Script" path="res://addons/LPCAnimatedSprite/LPCAnimatedSprite2D.gd" id="1_ji4g2"]
+[ext_resource type="Script" path="res://components/player_character/Player_PlayerController.gd" id="1_vrrvq"]
+[ext_resource type="Script" path="res://components/Character/Character_CharacterAnimationComponent.gd" id="3_0ecdm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ujdeg"]
+size = Vector2(24, 12)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_vrrvq")
+
+[node name="LPCAnimatedSprite2D" type="Node2D" parent="."]
+script = ExtResource("1_ji4g2")
+
+[node name="CharacterAnimationComponent" type="Node2D" parent="."]
+script = ExtResource("3_0ecdm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 24)
+shape = SubResource("RectangleShape2D_ujdeg")

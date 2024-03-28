@@ -1,0 +1,5 @@
+# Godot 4+ specific ignores
+.godot/
+assets/spritesheets
+assets/sheet_definitions
+assets/tilemaps

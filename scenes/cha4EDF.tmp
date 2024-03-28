@@ -1,0 +1,130 @@
+[gd_scene load_steps=9 format=3 uid="uid://e72bboswweco"]
+
+[ext_resource type="Script" path="res://scenes/CharacterContainer_Manager.gd" id="1_p0h3s"]
+[ext_resource type="Theme" uid="uid://bh7lhevfc8k45" path="res://scenes/character_creation_sub_theme.tres" id="1_vrnif"]
+[ext_resource type="Script" path="res://components/UserInterface/CharacterCreation_GenerateTabContainer.gd" id="2_4r2pf"]
+[ext_resource type="Script" path="res://scenes/CharacterContainer_Profile.gd" id="2_vpuyb"]
+[ext_resource type="Script" path="res://addons/LPCAnimatedSprite/LPCAnimatedSprite2D.gd" id="3_v7f0a"]
+[ext_resource type="Script" path="res://components/UserInterface/CharacterCreation_GenderOptionButton.gd" id="3_xxo3y"]
+[ext_resource type="Script" path="res://components/UserInterface/CharacterCreation_ClassOptionButton.gd" id="4_qrjel"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nfyph"]
+font_size = 48
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundPanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="VSplitContainer" type="VSplitContainer" parent="BackgroundPanelContainer"]
+layout_mode = 2
+dragger_visibility = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="BackgroundPanelContainer/VSplitContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BackgroundPanelContainer/VSplitContainer/PanelContainer"]
+layout_mode = 2
+text = "Character Customization"
+label_settings = SubResource("LabelSettings_nfyph")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="BackgroundPanelContainer/VSplitContainer"]
+layout_mode = 2
+
+[node name="CharacterContainer" type="PanelContainer" parent="BackgroundPanelContainer/VSplitContainer/HSplitContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+script = ExtResource("1_p0h3s")
+
+[node name="MarginContainer" type="MarginContainer" parent="BackgroundPanelContainer/VSplitContainer/HSplitContainer/CharacterContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BackgroundPanelContainer/VSplitContainer/HSplitContainer/CharacterContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ProfileTextureRect" type="TextureRect" parent="BackgroundPanelContainer/VSplitContainer/HSplitContainer/CharacterContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(144, 144)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("2_vpuyb")
+
+[node name="LPCAnimatedSprite2D" type="Node2D" parent="BackgroundPanelContainer/VSplitContainer/HSplitContainer/CharacterContainer/MarginContainer/VBoxContainer/ProfileTextureRect"]
+position = Vector2(72, 72)
+script = ExtResource("3_v7f0a")
+
+[node name="CharacterName" type="GridContainer" parent="BackgroundPanelContainer/VSplitContainer/HSplitContainer/CharacterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="NameInputLabel" type="Label" parent="BackgroundPanelContainer/VSplitContainer/HSplitContainer/CharacterContainer/MarginContainer/VBoxContainer/CharacterName"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("1_vrnif")
+text = "Name"
+
+[node name="NameInputTextEdit" type="TextEdit" parent="BackgroundPanelContainer/VSplitContainer/HSplitContainer/CharacterContainer/MarginContainer/VBoxContainer/CharacterName"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="CharacterGender" type="GridContainer" parent="BackgroundPanelContainer/VSplitContainer/HSplitContainer/CharacterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="GenderLabel" type="Label" parent="BackgroundPanelContainer/VSplitContainer/HSplitContainer/CharacterContainer/MarginContainer/VBoxContainer/CharacterGender"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("1_vrnif")
+text = "Gender"
+
+[node name="GenderOptionButton" type="OptionButton" parent="BackgroundPanelContainer/VSplitContainer/HSplitContainer/CharacterContainer/MarginContainer/VBoxContainer/CharacterGender"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+item_count = 2
+popup/item_0/text = "Male"
+popup/item_0/id = 0
+popup/item_1/text = "Female"
+popup/item_1/id = 1
+script = ExtResource("3_xxo3y")
+
+[node name="CharacterClass" type="GridContainer" parent="BackgroundPanelContainer/VSplitContainer/HSplitContainer/CharacterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="ClassLabel" type="Label" parent="BackgroundPanelContainer/VSplitContainer/HSplitContainer/CharacterContainer/MarginContainer/VBoxContainer/CharacterClass"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("1_vrnif")
+text = "Class
+"
+
+[node name="ClassOptionButton" type="OptionButton" parent="BackgroundPanelContainer/VSplitContainer/HSplitContainer/CharacterContainer/MarginContainer/VBoxContainer/CharacterClass"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "Human"
+popup/item_0/id = 0
+popup/item_1/text = "Orc"
+popup/item_1/id = 1
+popup/item_2/text = "Troll"
+popup/item_2/id = 2
+script = ExtResource("4_qrjel")
+
+[node name="CharacterCustomContainer" type="PanelContainer" parent="BackgroundPanelContainer/VSplitContainer/HSplitContainer"]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="BackgroundPanelContainer/VSplitContainer/HSplitContainer/CharacterCustomContainer"]
+layout_mode = 2
+script = ExtResource("2_4r2pf")
+
+[connection signal="item_selected" from="BackgroundPanelContainer/VSplitContainer/HSplitContainer/CharacterContainer/MarginContainer/VBoxContainer/CharacterGender/GenderOptionButton" to="BackgroundPanelContainer/VSplitContainer/HSplitContainer/CharacterContainer/MarginContainer/VBoxContainer/CharacterGender/GenderOptionButton" method="_on_item_selected"]
+[connection signal="item_selected" from="BackgroundPanelContainer/VSplitContainer/HSplitContainer/CharacterContainer/MarginContainer/VBoxContainer/CharacterClass/ClassOptionButton" to="BackgroundPanelContainer/VSplitContainer/HSplitContainer/CharacterContainer/MarginContainer/VBoxContainer/CharacterClass/ClassOptionButton" method="_on_item_selected"]

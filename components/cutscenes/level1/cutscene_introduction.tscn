@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfsn24a2qyvgc"]
+
+[ext_resource type="Script" path="res://components/level_managers/level_1/level_1_opening_cutscene.gd" id="1_l8wnc"]
+[ext_resource type="Script" path="res://components/Pahtfinding/PathFollow2D_TriggerDialog.gd" id="2_3r60y"]
+[ext_resource type="PackedScene" uid="uid://0apq18pm0ddd" path="res://scenes/Characters/character_rogue.tscn" id="3_c2gew"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1omq2"]
+size = Vector2(20, 14.5)
+
+[sub_resource type="Curve2D" id="Curve2D_dmwob"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 108, 42, 0, 0, 0, 0, -332, 42, 0, 0, 0, 0, -332, -30, 0, 0, 0, 0, -450, -30, 0, 0, 0, 0, -476, -30, 0, 0, 0, 0, -476, -70, 0, 0, 0, 0, -476, 50, 0, 0, 0, 0, 108, 50)
+}
+point_count = 8
+
+[node name="cutscene_introduction" type="Node2D"]
+script = ExtResource("1_l8wnc")
+
+[node name="rogue_starting_spawn" type="Node2D" parent="."]
+position = Vector2(1208, 384)
+
+[node name="PathFollow2D_TriggerDialog" type="Node2D" parent="."]
+position = Vector2(624, 296)
+rotation = 3.14159
+script = ExtResource("2_3r60y")
+
+[node name="Area2D" type="Area2D" parent="PathFollow2D_TriggerDialog"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D_TriggerDialog/Area2D"]
+position = Vector2(0, -0.75)
+shape = SubResource("RectangleShape2D_1omq2")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(1100, 350)
+curve = SubResource("Curve2D_dmwob")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(108, 42)
+rotates = false
+loop = false
+
+[node name="character_rogue" parent="Path2D/PathFollow2D" instance=ExtResource("3_c2gew")]
+
+[connection signal="body_entered" from="PathFollow2D_TriggerDialog/Area2D" to="PathFollow2D_TriggerDialog" method="_on_area_2d_body_entered"]

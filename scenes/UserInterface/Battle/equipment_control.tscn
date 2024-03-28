@@ -1,0 +1,192 @@
+[gd_scene load_steps=2 format=3 uid="uid://cr6e2wlbcqnox"]
+
+[ext_resource type="Script" path="res://components/user_interface/battle controller/equipment_control.gd" id="1_14yy6"]
+
+[node name="equipment_control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_14yy6")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(0, 350)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="header_container" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="container_label" type="Label" parent="PanelContainer/VBoxContainer/header_container"]
+layout_mode = 2
+text = "Equipment"
+
+[node name="container_button_close" type="Button" parent="PanelContainer/VBoxContainer/header_container"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Close"
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="items_container" type="MarginContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/items_container"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/items_container/VBoxContainer"]
+layout_mode = 2
+text = "Items"
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer/HBoxContainer/items_container/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/items_container/VBoxContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+
+[node name="items" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/items_container/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/items_container/VBoxContainer/ScrollContainer/items"]
+layout_mode = 2
+text = "Steel Dagger"
+
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/items_container/VBoxContainer/ScrollContainer/items"]
+layout_mode = 2
+text = "Chainmail"
+
+[node name="Label3" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/items_container/VBoxContainer/ScrollContainer/items"]
+layout_mode = 2
+text = "Chainmail"
+
+[node name="Label4" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/items_container/VBoxContainer/ScrollContainer/items"]
+layout_mode = 2
+text = "Chainmail"
+
+[node name="Label5" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/items_container/VBoxContainer/ScrollContainer/items"]
+layout_mode = 2
+text = "Chainmail"
+
+[node name="Label6" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/items_container/VBoxContainer/ScrollContainer/items"]
+layout_mode = 2
+text = "Chainmail"
+
+[node name="Label7" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/items_container/VBoxContainer/ScrollContainer/items"]
+layout_mode = 2
+text = "Chainmail"
+
+[node name="Label8" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/items_container/VBoxContainer/ScrollContainer/items"]
+layout_mode = 2
+text = "Chainmail"
+
+[node name="Label9" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/items_container/VBoxContainer/ScrollContainer/items"]
+layout_mode = 2
+text = "Chainmail"
+
+[node name="Label10" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/items_container/VBoxContainer/ScrollContainer/items"]
+layout_mode = 2
+text = "Chainmail"
+
+[node name="Label11" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/items_container/VBoxContainer/ScrollContainer/items"]
+layout_mode = 2
+text = "Chainmail"
+
+[node name="Label12" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/items_container/VBoxContainer/ScrollContainer/items"]
+layout_mode = 2
+text = "Chainmail"
+
+[node name="Label13" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/items_container/VBoxContainer/ScrollContainer/items"]
+layout_mode = 2
+text = "Chainmail"
+
+[node name="Label14" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/items_container/VBoxContainer/ScrollContainer/items"]
+layout_mode = 2
+text = "Chainmail"
+
+[node name="Label15" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/items_container/VBoxContainer/ScrollContainer/items"]
+layout_mode = 2
+text = "Chainmail"
+
+[node name="Label16" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/items_container/VBoxContainer/ScrollContainer/items"]
+layout_mode = 2
+text = "Chainmail"
+
+[node name="Label17" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/items_container/VBoxContainer/ScrollContainer/items"]
+layout_mode = 2
+text = "Chainmail"
+
+[node name="Label18" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/items_container/VBoxContainer/ScrollContainer/items"]
+layout_mode = 2
+text = "Chainmail"
+
+[node name="Label19" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/items_container/VBoxContainer/ScrollContainer/items"]
+layout_mode = 2
+text = "Chainmail"
+
+[node name="Label20" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/items_container/VBoxContainer/ScrollContainer/items"]
+layout_mode = 2
+text = "Chainmail"
+
+[node name="equip_container" type="MarginContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 20
+
+[node name="TabContainer" type="TabContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equip_container"]
+layout_mode = 2
+
+[node name="armor_container" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equip_container/TabContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/equip_container/TabContainer/armor_container"]
+layout_mode = 2
+text = "Armor"
+
+[node name="weapon_container" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equip_container/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/equip_container/TabContainer/weapon_container"]
+layout_mode = 2
+text = "Weapons"
+
+[node name="magic_container" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equip_container/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/equip_container/TabContainer/magic_container"]
+layout_mode = 2
+text = "Magic"
+
+[node name="potion_container" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equip_container/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/equip_container/TabContainer/potion_container"]
+layout_mode = 2
+text = "Potions"
+
+[node name="misc_container" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equip_container/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/equip_container/TabContainer/misc_container"]
+layout_mode = 2
+text = "Potions"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/header_container/container_button_close" to="." method="_on_container_button_close_pressed"]

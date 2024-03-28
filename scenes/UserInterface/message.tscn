@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://dy6tf2nwr5hjo"]
+
+[ext_resource type="Script" path="res://components/user_interface/message.gd" id="1_12qks"]
+
+[node name="message" type="Control"]
+z_index = 10
+custom_minimum_size = Vector2(400, 32)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_12qks")
+
+[node name="background" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 36.0
+
+[node name="message_text" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "This is a message: Dungeon Key has been added"
