@@ -19,9 +19,10 @@ config/icon="res://icon.svg"
 
 JsonLoader="*res://classes/JSON_loader.gd"
 CharacterLoader="*res://classes/Character_Loader.gd"
-MessageNotification="*res://components/user_interface/message_notification.gd"
-Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 GameSceneManager="*res://components/game_manager/Game_SceneManager.gd"
+Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+GameSaveManager="*res://components/game_manager/Game_SaveManager.gd"
+OverworldUi="*res://components/user_interface/overworld_ui.gd"
 
 [dialogic]
 

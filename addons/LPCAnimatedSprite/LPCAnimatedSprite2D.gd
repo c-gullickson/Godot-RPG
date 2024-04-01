@@ -6,7 +6,7 @@ class_name LPCAnimatedSprite2D
 @export var SpriteSheets:Array[LPCSpriteSheet]
 @export var DefaultAnimation:LPCAnimation = LPCAnimation.IDLE_DOWN
 
-var assigned_spritesheets: Dictionary = {}
+var assigned_spritesheets: Array = []
 
 enum LPCAnimation {
 	CAST_UP,
@@ -48,44 +48,34 @@ func _ready():
 # Add a specific layer to the current layers available.
 # If layer exists, update
 # Sort and reapply all spritesheets
-func add_player_spritesheet_layer(lpc_character_spritesheet):
-	if assigned_spritesheets.find_key(lpc_character_spritesheet.spritesheet_type):
-		assigned_spritesheets[lpc_character_spritesheet.spritesheet_type] = lpc_character_spritesheet
-	else:
-		assigned_spritesheets[lpc_character_spritesheet.spritesheet_type] = lpc_character_spritesheet
+func add_player_spritesheet_layer(lpc_character_spritesheet: Character_Spritesheet):
+	spritesheet_exists_index(lpc_character_spritesheet)
 	
-	var sorted_dictonary : Dictionary = sortDictionary(assigned_spritesheets)
 	SpriteSheets.clear()
-	
-	for spritesheet in sorted_dictonary.values():
+	for spritesheet in sort_spritesheets_by_layer(assigned_spritesheets):
 		SpriteSheets.append(spritesheet.spritesheet)
-		
+
 	LoadAnimations()
 	CharacterLoader.set_character_spritesheet_profile(assigned_spritesheets)
 
 # Apply a new spritesheet layer for any npc character
 # Separate method due to not needing to save a character profile
-func add_npc_spritesheet_layer(npc_lpc_character_spritesheet):
-	if assigned_spritesheets.find_key(npc_lpc_character_spritesheet.spritesheet_type):
-		assigned_spritesheets[npc_lpc_character_spritesheet.spritesheet_type] = npc_lpc_character_spritesheet
-	else:
-		assigned_spritesheets[npc_lpc_character_spritesheet.spritesheet_type] = npc_lpc_character_spritesheet
+func add_npc_spritesheet_layer(npc_lpc_character_spritesheet: Character_Spritesheet):
+	spritesheet_exists_index(npc_lpc_character_spritesheet)
 	
-	var sorted_dictonary : Dictionary = sortDictionary(assigned_spritesheets)
 	SpriteSheets.clear()
-	
-	for spritesheet in sorted_dictonary.values():
+	for spritesheet in sort_spritesheets_by_layer(assigned_spritesheets):
 		SpriteSheets.append(spritesheet.spritesheet)
 		
 	LoadAnimations()
 	
 # Using a dictionary of sprite parts, create a character
-func add_spritesheet_profile(spritesheet_profile: Dictionary):
+func add_spritesheet_profile(spritesheet_profile: Array):
 	assigned_spritesheets = spritesheet_profile
-	var sorted_dictonary : Dictionary = sortDictionary(assigned_spritesheets)
+	var sorted_spritesheets : Array = sort_spritesheets_by_layer(assigned_spritesheets)
 	SpriteSheets.clear()
 	
-	for spritesheet in sorted_dictonary.values():
+	for spritesheet in sorted_spritesheets:
 		SpriteSheets.append(spritesheet.spritesheet)
 		
 	LoadAnimations()
@@ -158,28 +148,32 @@ func AddAnimation(spriteSheet:LPCSpriteSheet, spriteFrames:SpriteFrames, animati
 	return spriteFrames
 
 
-# Function to sort the dictionary by the 'sortValue' property
-func sortDictionary(dictionary : Dictionary) -> Dictionary:
-	var sortedKeys : Array = dictionary.keys()
+# Function to sort the list of current spritesheets by the 'sortValue' property
+func sort_spritesheets_by_layer(spritesheets : Array) -> Array:
+	# Sort the based on the 'sortValue' property of the custom objects
+	spritesheets.sort_custom(Callable(self, "sort_spritesheets"))
 	
-	# Sort the keys based on the 'sortValue' property of the custom objects
-	sortedKeys.sort_custom(Callable(self, "_compare_objects"))
-	
-	# Create a new dictionary with sorted keys
-	var sortedDictionary : Dictionary = {}
-	for key in dictionary:
-		sortedDictionary[key] = dictionary[key]
-
-	return sortedDictionary
+	return spritesheets
 
 # Custom comparison function for sorting based on 'sortValue'
-func _compare_objects(a, b) -> int:
-	var valueA : int = assigned_spritesheets[a].spritesheet_layer
-	var valueB : int = assigned_spritesheets[b].spritesheet_layer
+func sort_spritesheets(a:Character_Spritesheet , b: Character_Spritesheet) -> bool:
+	if a.spritesheet_layer < b.spritesheet_layer:
+		return true
+	return false
+
+# Iterate through the list of existing spritesheets assigned, and determine if the type already exists
+# If it already exists, then update and replace
+# Else append to the assigned spritesheet array
+func spritesheet_exists_index(lpc_character_spritesheet: Character_Spritesheet) -> void:
+	var index = 0
+	for assigned_spritesheet: Character_Spritesheet in assigned_spritesheets:
+		if assigned_spritesheet.spritesheet_type == lpc_character_spritesheet.spritesheet_type:
+				
+			assigned_spritesheets.remove_at(index)
+			assigned_spritesheets.append(lpc_character_spritesheet)
+			return
+		else:
+			index += 1
 	
-	if valueA > valueB:
-		return -1
-	elif valueA < valueB:
-		return 1
-	else:
-		return 0
+	assigned_spritesheets.append(lpc_character_spritesheet)
+	return

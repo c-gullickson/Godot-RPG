@@ -18,5 +18,5 @@ func _process(delta):
 	message_duration -= delta
 	
 	if(message_duration <= 0):
-		MessageNotification.remove_message()
+		OverworldUi.remove_message()
 		queue_free()

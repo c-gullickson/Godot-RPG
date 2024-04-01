@@ -1,10 +1,8 @@
-@tool
 extends Resource
 class_name LPCSpriteSheet
 
 @export var SpriteSheet:Texture2D
 @export var Name:String = ""
-
 @export var SpriteType: SpriteTypeEnum
 
 enum SpriteTypeEnum {
@@ -16,11 +14,6 @@ enum SpriteTypeEnum {
 	OversizeWhip
 }
 
-func _init(spritesheet_texture: Texture2D, name: String, sprite_type: SpriteTypeEnum):
-	SpriteSheet = spritesheet_texture
-	Name = name
-	SpriteType = sprite_type
-	
 
 static var NormalAnimationData:Array[LPCAnimationData] = [
 	LPCAnimationData.new(7,"CAST_UP",0, 0,false),

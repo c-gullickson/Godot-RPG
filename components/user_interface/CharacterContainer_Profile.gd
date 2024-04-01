@@ -35,8 +35,16 @@ func add_sheet(spritesheet_type: String, new_sheet_path: String, layer: int):
 	var full_path = "res://Assets/spritesheets/" + new_sheet_path + ".png"
 	var spritesheet_texture = load(full_path)
 	
-	var lpc_spritesheet = LPCSpriteSheet.new(spritesheet_texture, "body", LPCSpriteType.SpriteTypeEnum.Normal)
-	var character_spritesheet = Character_Spritesheet.new(spritesheet_type, lpc_spritesheet, layer)
+	var lpc_spritesheet: LPCSpriteSheet = LPCSpriteSheet.new()
+	lpc_spritesheet.SpriteSheet = spritesheet_texture
+	lpc_spritesheet.Name = "body"
+	lpc_spritesheet.SpriteType = LPCSpriteType.SpriteTypeEnum.Normal
+	
+	var character_spritesheet: Character_Spritesheet = Character_Spritesheet.new()
+	character_spritesheet.spritesheet_type = spritesheet_type
+	character_spritesheet.spritesheet = lpc_spritesheet
+	character_spritesheet.spritesheet_layer = layer
+	
 	lpc_profile.add_player_spritesheet_layer(character_spritesheet)
 	_set_image()
 

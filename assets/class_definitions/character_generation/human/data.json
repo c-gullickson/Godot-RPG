@@ -1,9 +1,9 @@
 {
-	"characterDefinition" : [
+	"characterDefinition": [
 		{
-			"classType": "human",
-			"gender": "male",
-			"body": "res://Assets/sheet_definitions/body.json",
+			"classType": "",
+			"gender": "",
+			"body": "",
 			"startingGear": [
 				{
 					"gearType": "legs",
@@ -19,139 +19,6 @@
 					"gearType": "shoes",
 					"gearVariant": "black",
 					"gearPath": "res://Assets/sheet_definitions/feet_shoes.json"
-				}
-			],
-			"partType": [
-				{
-					"container": "headContainer",
-					"containerText": "Head",
-					"containerTypes": [
-						{
-							"subtypeContainer": "humanMaleHead",
-							"subtypeText": "Human Male",
-							"subtypePath": "res://Assets/sheet_definitions/heads_human_male.json"
-						}
-					]
-				},
-				{
-					"container": "earsContainer",
-					"containerText": "Ears",
-					"containerTypes": [
-						{
-							"subtypeContainer": "humanMaleBigEars",
-							"subtypeText": "Big Ears",
-							"subtypePath": "res://Assets/sheet_definitions/head_ears_big.json"
-						},
-						{
-							"subtypeContainer": "humanMaleLongEars",
-							"subtypeText": "Long Ears",
-							"subtypePath": "res://Assets/sheet_definitions/head_ears_long.json"
-						}
-					]
-				},
-				{
-					"container": "noseContainer",
-					"containerText": "Nose",
-					"containerTypes": [
-						{
-							"subtypeContainer": "humanMaleBigNose",
-							"subtypeText": "Big Nose",
-							"subtypePath": "res://Assets/sheet_definitions/head_nose_big.json"
-						},
-						{
-							"subtypeContainer": "humanMaleButtonNose",
-							"subtypeText": "Button Nose",
-							"subtypePath": "res://Assets/sheet_definitions/head_nose_button.json"
-						},
-						{
-							"subtypeContainer": "humanMaleStraightNose",
-							"subtypeText": "Straight Nose",
-							"subtypePath": "res://Assets/sheet_definitions/head_nose_straight.json"
-						}
-					]
-				},
-				{
-					"container": "eyesContainer",
-					"containerText": "Eyes",
-					"containerTypes": [
-						{
-							"subtypeContainer": "humanMaleEyes",
-							"subtypeText": "Eyes",
-							"subtypePath": "res://Assets/sheet_definitions/eyes.json"
-						}
-					]
-				},
-				{
-					"container": "facialHair",
-					"containerText": "Facial Hair",
-					"containerTypes": [
-						{
-							"subtypeContainer": "humanMaleFacialHairBeard",
-							"subtypeText": "Beard",
-							"subtypePath": "res://Assets/sheet_definitions/beards_beard.json"
-						},
-						{
-							"subtypeContainer": "humanMaleFacialHairBigstache",
-							"subtypeText": "Bigstache",
-							"subtypePath": "res://Assets/sheet_definitions/beards_bigstache.json"
-						},
-						{
-							"subtypeContainer": "humanMaleFacialHairMustache",
-							"subtypeText": "Mustache",
-							"subtypePath": "res://Assets/sheet_definitions/beards_mustache.json"
-						},
-											{
-							"subtypeContainer": "humanMaleFacialHairWinter",
-							"subtypeText": "Winter Beard",
-							"subtypePath": "res://Assets/sheet_definitions/beards_winter.json"
-						}
-					]
-				},
-				{
-					"container": "hair",
-					"containerText": "Hair",
-					"containerTypes": [
-						{
-							"subtypeContainer": "humanMaleHairAfro",
-							"subtypeText": "Natural Afro",
-							"subtypePath": "res://Assets/sheet_definitions/hair_afro.json"
-						},
-						{
-							"subtypeContainer": "humanMaleHairDreadlocks",
-							"subtypeText": "Dreadlocks",
-							"subtypePath": "res://Assets/sheet_definitions/hair_dreadlocks_short.json"
-						},
-						{
-							"subtypeContainer": "humanMaleHairBalding",
-							"subtypeText": "Balding",
-							"subtypePath": "res://Assets/sheet_definitions/hair_balding.json"
-						},
-						{
-							"subtypeContainer": "humanMaleHairLonghawk",
-							"subtypeText": "Longhawk",
-							"subtypePath": "res://Assets/sheet_definitions/hair_longhawk.json"
-						},
-						{
-							"subtypeContainer": "humanMaleHairShorthawk",
-							"subtypeText": "Shorthawk",
-							"subtypePath": "res://Assets/sheet_definitions/hair_shorthawk.json"
-						},
-						{
-							"subtypeContainer": "humanMaleHairBuzzcut",
-							"subtypeText": "Buzzcut",
-							"subtypePath": "res://Assets/sheet_definitions/hair_buzzcut.json"
-						},
-						{
-							"subtypeContainer": "humanMaleHairPlain",
-							"subtypeText": "Plain",
-							"subtypePath": "res://Assets/sheet_definitions/hair_plain.json"
-						},										
-						{
-							"subtypeContainer": "humanMaleHairBeadhead",
-							"subtypeText": "Beadhead",
-							"subtypePath": "res://Assets/sheet_definitions/hair_bedhead.json"
-						}
-					]
 				}
 			]
 		}

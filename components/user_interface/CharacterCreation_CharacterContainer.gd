@@ -13,7 +13,7 @@ var _selected_gender = ""
 var _selected_class = ""
 
 var _class_file_path: String = ""
-var _character_data: Dictionary
+var _character_creation_data: Dictionary
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,26 +33,27 @@ func _on_gender_option_button_gender_selection_changed(selected_index, selected_
 func _on_class_option_button_class_selection_changed(selected_index, selected_value):
 	print("On Class Select " + str(selected_value))
 	_selected_class = selected_value
-	_class_file_path = _class_file_base_path + _selected_class + "/data.json"
+	
+	_class_file_path = "%s/%s/%s/characterCreation.json" % [_class_file_base_path, _selected_class, _selected_gender ]
 	if _selected_gender != "":
 		_load_character_creation_file()
 
-# Parse out character file data
+# Load in and parse out Character Data class/gender file
 func _load_character_creation_file():
-	_character_data = JsonLoader.load_json_by_path(_class_file_path)
-	if _character_data is Dictionary:
-		_parse_character_data()
+	_character_creation_data = JsonLoader.load_json_by_path(_class_file_path)
+	if _character_creation_data is Dictionary:
+		_parse_character_creation_data()
 	else:
 		print("Invalid File Format")
 
-# Take the Chracter Data file, and parse it 
-func _parse_character_data():
-	for character_gender in _character_data.characterDefinition:
-			if character_gender["gender"].to_lower() == _selected_gender.to_lower():
-				CharacterLoader.set_character_data(character_gender)
-				_character_container_profile.add_character_base(character_gender.body)
-				
-				# Sort through the list of character parts
-				for character_part in character_gender["partType"]:
-					# Generate a new Container
-					_character_tab_container.create_new_part_tab_container(character_part)
+# Take the Chracter Data class/gender file, and parse it
+# Set the base character stats based on the class
+# Initialize a new tab for each part type 
+func _parse_character_creation_data():
+	var creation_data = _character_creation_data["characterCreation"]
+	_character_container_profile.add_character_base(creation_data["body"])
+	CharacterLoader.set_character_stats(creation_data["characterStats"])
+	# Sort through the list of character parts
+	for character_part in creation_data["partType"]:
+		# Generate a new Container
+		_character_tab_container.create_new_part_tab_container(character_part)

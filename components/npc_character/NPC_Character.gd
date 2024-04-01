@@ -48,8 +48,16 @@ func _process(delta):
 func add_base_sheet(spritesheet_type: String, sprite_path: String, layer: int):
 	var spritesheet_texture = load(sprite_path)
 	
-	var lpc_spritesheet = LPCSpriteSheet.new(spritesheet_texture, "body", LPCSpriteType.SpriteTypeEnum.Normal)
-	var character_spritesheet = CharacterSpritesheet.new(spritesheet_type, lpc_spritesheet, layer)
+	var lpc_spritesheet: LPCSpriteSheet = LPCSpriteSheet.new()
+	lpc_spritesheet.SpriteSheet = spritesheet_texture
+	lpc_spritesheet.Name = "body"
+	lpc_spritesheet.SpriteType = LPCSpriteType.SpriteTypeEnum.Normal
+	
+	var character_spritesheet = CharacterSpritesheet.new()
+	character_spritesheet.spritesheet_type = spritesheet_type
+	character_spritesheet.spritesheet = lpc_spritesheet
+	character_spritesheet.spritesheet_layer = layer
+	
 	lpcAnimator.add_npc_spritesheet_layer(character_spritesheet)
 
 func start_follow_path():

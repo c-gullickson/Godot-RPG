@@ -5,40 +5,49 @@ const Constants = preload("res://components/constants/Enumerations.gd")
 
 @onready var lpcAnimator = $LPCAnimatedSprite2D as LPCAnimatedSprite2D
 @onready var characterAnimation = $CharacterAnimationComponent
-@onready var character_inventory = $CharacterInventoryComponent
+@onready var character_inventory: inventory = $CharacterInventoryComponent
 
 @export var speed = 200
 @export var move_direction = Constants.MoveDirection.SOUTH
 
-var character_data: Dictionary = {}
+var player_data: player_base_data = player_base_data.new()
 var LPCSpriteType = preload("res://addons/LPCAnimatedSprite/LPCSpriteSheet.gd")
 var CharacterSpritesheet = preload("res://classes/Character_Spritesheet.gd")
+
+var equipment_selection_preload = preload("res://scenes/UserInterface/Battle/equipment_control.tscn")
+var equipment_selection
 
 var can_use_player_input: bool = true
 var player_state: Constants.CharacterStates = Constants.CharacterStates.OVERWORLD
 
 var player_overworld_transition: overworld_transition
 
+var equipment_ui_open: bool = false
+
 func _ready():
-	character_data = CharacterLoader.get_character_data()
-	lpcAnimator.add_spritesheet_profile(CharacterLoader.get_character_spritesheet_profile())
+	#TODO: Should change character_data to character profile, where inventory, stats and more are loaded
+	#character_data = CharacterLoader.get_character_stats()
+	var player = CharacterLoader.get_player()
+	player_data = player.player_data
+	
+	lpcAnimator.add_spritesheet_profile(player_data.base_spritesheets.spritesheets_list)
 	characterAnimation.initialize(lpcAnimator)
 	character_inventory.initialize()
 
 func instantiate_new_player():
-	for gear in character_data["startingGear"]:
-		var gear_path = gear["gearPath"]
-		
-		# Build direct path to gear spritesheet
-		var spritesheet_definition = JsonLoader.load_json_by_path(gear_path)
-		var spritesheet_type = spritesheet_definition["type_name"]
-		var gear_base_path = spritesheet_definition["layer_1"][character_data["gender"]] + gear["gearVariant"]
-		var gear_base_layer = spritesheet_definition["layer_1"]["zPos"]
-		
-		var full_path = "res://Assets/spritesheets/" + gear_base_path + ".png"
-		var spritesheet_texture = load(full_path)
-		add_sheet(spritesheet_type, gear_base_path, gear_base_layer)
-
+	#for gear in character_data["startingGear"]:
+		#var gear_path = gear["gearPath"]
+		#
+		## Build direct path to gear spritesheet
+		#var spritesheet_definition = JsonLoader.load_json_by_path(gear_path)
+		#var spritesheet_type = spritesheet_definition["type_name"]
+		#var gear_base_path = spritesheet_definition["layer_1"][character_data["gender"]] + gear["gearVariant"]
+		#var gear_base_layer = spritesheet_definition["layer_1"]["zPos"]
+		#
+		#var full_path = "res://Assets/spritesheets/" + gear_base_path + ".png"
+		#var spritesheet_texture = load(full_path)
+		#add_sheet(spritesheet_type, gear_base_path, gear_base_layer)
+	pass
 
 # Using the file path of the selected part, append it to the LPC Array
 func add_sheet(spritesheet_type: String, new_sheet_path: String, layer: int):
@@ -47,13 +56,25 @@ func add_sheet(spritesheet_type: String, new_sheet_path: String, layer: int):
 	var full_path = "res://Assets/spritesheets/" + new_sheet_path + ".png"
 	var spritesheet_texture = load(full_path)
 	
-	var lpc_spritesheet = LPCSpriteSheet.new(spritesheet_texture, "body", LPCSpriteType.SpriteTypeEnum.Normal)
-	var character_spritesheet = CharacterSpritesheet.new(spritesheet_type, lpc_spritesheet, layer)
+	var lpc_spritesheet: LPCSpriteSheet = LPCSpriteSheet.new()
+	lpc_spritesheet.SpriteSheet = spritesheet_texture
+	lpc_spritesheet.Name = "body"
+	lpc_spritesheet.SpriteType = LPCSpriteType.SpriteTypeEnum.Normal
+	
+	var character_spritesheet: Character_Spritesheet = CharacterSpritesheet.new()
+	character_spritesheet.spritesheet_type = spritesheet_type
+	character_spritesheet.spritesheet = lpc_spritesheet
+	character_spritesheet.spritesheet_layer = layer
+	
 	lpcAnimator.add_player_spritesheet_layer(character_spritesheet)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+	if Input.is_key_pressed(KEY_SPACE):
+		print("Open Character Inventory")
+		open_equipment_selection()
 	
 	# Get and calculate the velocity to move the unit based on user input
 	velocity = movement_input() * speed
@@ -110,7 +131,14 @@ func set_transition(transition: overworld_transition):
 func add_item_to_inventory(item: item_data, amount: int):
 	print("Add new item to character inventory")
 	character_inventory.add_item(item, amount)
-	MessageNotification.add_message("Added: " + item.item_name + " to Inventory")
+	OverworldUi.add_message("Added: " + item.item_name + " to Inventory")
 
 func check_items_in_inventory(item_to_check: String) -> bool:
 	return character_inventory.check_inventory_for_item(item_to_check)
+
+# Open and place a new instance of the equipment control
+func open_equipment_selection():
+	if player_state == Constants.CharacterStates.OVERWORLD:
+		OverworldUi.open_equipment_control()
+
+
