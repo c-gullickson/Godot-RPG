@@ -14,15 +14,12 @@ var player_data: player_base_data = player_base_data.new()
 var LPCSpriteType = preload("res://addons/LPCAnimatedSprite/LPCSpriteSheet.gd")
 var CharacterSpritesheet = preload("res://classes/Character_Spritesheet.gd")
 
-var equipment_selection_preload = preload("res://scenes/UserInterface/Battle/equipment_control.tscn")
-var equipment_selection
-
 var can_use_player_input: bool = true
 var player_state: Constants.CharacterStates = Constants.CharacterStates.OVERWORLD
 
 var player_overworld_transition: overworld_transition
 
-var equipment_ui_open: bool = false
+var is_equipment_ui_open: bool = false
 
 func _ready():
 	#TODO: Should change character_data to character profile, where inventory, stats and more are loaded
@@ -139,6 +136,8 @@ func check_items_in_inventory(item_to_check: String) -> bool:
 # Open and place a new instance of the equipment control
 func open_equipment_selection():
 	if player_state == Constants.CharacterStates.OVERWORLD:
-		OverworldUi.open_equipment_control()
-
+		if is_equipment_ui_open:
+			return
+		OverworldUi.open_equipment_control(character_inventory.get_all_items())
+		is_equipment_ui_open = true
 

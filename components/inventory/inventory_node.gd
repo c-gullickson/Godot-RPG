@@ -7,6 +7,12 @@ var items: Array = []
 func initialize():
 	pass
 	
+
+# Get all items, return as an array
+func get_all_items():
+	return items
+
+
 # Add an item
 func add_item(item: item_data, quantity: int):
 	print("Add Item to Inventory")

@@ -6,7 +6,7 @@ var message_notification_preload = preload("res://scenes/UserInterface/message_n
 var message_notification
 
 var equipment_control_preload = preload("res://scenes/UserInterface/Battle/equipment_control.tscn")
-var equipment_control
+var equipment_control: Control
 
 func _ready():
 	message_notification = message_notification_preload.instantiate()
@@ -32,10 +32,15 @@ func close_message_notification():
 	
 
 
-func open_equipment_control():
+func open_equipment_control(items: Array):
+	# populate the list of items
+	equipment_control.initialize_items(items)
+	
+	# make control visible
 	equipment_control.visible = true
 	equipment_control.set_z_index(10)
 	equipment_control.global_position = Vector2(576,0)
+
 
 
 func close_equipment_control():
