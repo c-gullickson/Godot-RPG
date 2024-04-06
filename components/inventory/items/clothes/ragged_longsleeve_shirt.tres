@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="clothing_item_data" load_steps=3 format=3 uid="uid://cpptens8031en"]
+
+[ext_resource type="Texture2D" uid="uid://p6kc13jhj14c" path="res://assets/spritesheets/torso/clothes/longsleeve/male/brown.png" id="1_g65dy"]
+[ext_resource type="Script" path="res://components/inventory/item_data/clothing_item_data.gd" id="1_hfwav"]
+
+[resource]
+script = ExtResource("1_hfwav")
+item_variation = 0
+item_category = 4
+item_name = "Ragged Longsleeve Shirt"
+item_description = "Old, ragged long sleeve shirt full of holes and tears."
+item_texture = ExtResource("1_g65dy")
+item_type = 5
+item_z_position = 35
+item_weight = 0.0
+item_is_equipable = true
+is_item_equip = false

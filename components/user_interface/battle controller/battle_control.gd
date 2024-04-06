@@ -1,27 +1,20 @@
 extends Control
 
+class_name battle_control
 
-var equipment_selection_preload = preload("res://scenes/UserInterface/Battle/equipment_control.tscn")
-var equipment_selection
-
+var _player: player_character
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
+func initialize(player: player_character):
+	_player = player
 
 # Open the container to allow the player to equip different items for battle
 func _on_player_equipment_button_pressed():
-	equipment_selection = equipment_selection_preload.instantiate()
-	add_child(equipment_selection)
-	
-	equipment_selection.connect("close_equipment_control", Callable(self, "close_equipment_control"))
-	equipment_selection.global_position = Vector2(0,0)
+	OverworldUi.open_equipment_control(_player.character_inventory)
 
 func close_equipment_control():
-	equipment_selection.queue_free()
+	OverworldUi.close_equipment_control()

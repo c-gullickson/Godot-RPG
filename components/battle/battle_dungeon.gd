@@ -13,6 +13,7 @@ var _npc
 @onready var player_spawn_points = $player_spawn_points
 @onready var enemy_spawn_points = $enemy_spawn_points
 
+@onready var battle_control = $battle_control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -37,6 +38,7 @@ func initialize(player: player_character, npc: npc_character):
 	_npc.rotation = 0
 	_npc.move_direction = Constants.MoveDirection.WEST
 
+	battle_control.initialize(_player)
 
 func _process(delta):
 	if Input.is_key_pressed(KEY_0):

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="clothing_item_data" load_steps=3 format=3 uid="uid://1wjfg0ga1m4w"]
+
+[ext_resource type="Texture2D" uid="uid://dqpxudg801bg0" path="res://assets/spritesheets/legs/pants/male/brown.png" id="1_b2rqo"]
+[ext_resource type="Script" path="res://components/inventory/item_data/clothing_item_data.gd" id="1_si7he"]
+
+[resource]
+script = ExtResource("1_si7he")
+item_variation = 0
+item_category = 4
+item_name = "Ragged Pants"
+item_description = "Old, ragged long sleeve shirt full of holes and tears."
+item_texture = ExtResource("1_b2rqo")
+item_type = 2
+item_z_position = 20
+item_weight = 0.0
+item_is_equipable = true
+is_item_equip = false

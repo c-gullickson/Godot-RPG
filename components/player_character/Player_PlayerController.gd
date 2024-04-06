@@ -3,7 +3,7 @@ class_name player_character
 
 const Constants = preload("res://components/constants/Enumerations.gd")
 
-@onready var lpcAnimator = $LPCAnimatedSprite2D as LPCAnimatedSprite2D
+@onready var lpcAnimator: LPCAnimatedSprite2D = $LPCAnimatedSprite2D
 @onready var characterAnimation = $CharacterAnimationComponent
 @onready var character_inventory: inventory = $CharacterInventoryComponent
 
@@ -22,6 +22,7 @@ var player_overworld_transition: overworld_transition
 var is_equipment_ui_open: bool = false
 
 func _ready():
+	OverworldUi.connect("equipment_control_closed", Callable(self, "close_equipment_selection"))
 	#TODO: Should change character_data to character profile, where inventory, stats and more are loaded
 	#character_data = CharacterLoader.get_character_stats()
 	var player = CharacterLoader.get_player()
@@ -29,41 +30,7 @@ func _ready():
 	
 	lpcAnimator.add_spritesheet_profile(player_data.base_spritesheets.spritesheets_list)
 	characterAnimation.initialize(lpcAnimator)
-	character_inventory.initialize()
-
-func instantiate_new_player():
-	#for gear in character_data["startingGear"]:
-		#var gear_path = gear["gearPath"]
-		#
-		## Build direct path to gear spritesheet
-		#var spritesheet_definition = JsonLoader.load_json_by_path(gear_path)
-		#var spritesheet_type = spritesheet_definition["type_name"]
-		#var gear_base_path = spritesheet_definition["layer_1"][character_data["gender"]] + gear["gearVariant"]
-		#var gear_base_layer = spritesheet_definition["layer_1"]["zPos"]
-		#
-		#var full_path = "res://Assets/spritesheets/" + gear_base_path + ".png"
-		#var spritesheet_texture = load(full_path)
-		#add_sheet(spritesheet_type, gear_base_path, gear_base_layer)
-	pass
-
-# Using the file path of the selected part, append it to the LPC Array
-func add_sheet(spritesheet_type: String, new_sheet_path: String, layer: int):
-	print("New SHeet Path: " + new_sheet_path)
-	#
-	var full_path = "res://Assets/spritesheets/" + new_sheet_path + ".png"
-	var spritesheet_texture = load(full_path)
-	
-	var lpc_spritesheet: LPCSpriteSheet = LPCSpriteSheet.new()
-	lpc_spritesheet.SpriteSheet = spritesheet_texture
-	lpc_spritesheet.Name = "body"
-	lpc_spritesheet.SpriteType = LPCSpriteType.SpriteTypeEnum.Normal
-	
-	var character_spritesheet: Character_Spritesheet = CharacterSpritesheet.new()
-	character_spritesheet.spritesheet_type = spritesheet_type
-	character_spritesheet.spritesheet = lpc_spritesheet
-	character_spritesheet.spritesheet_layer = layer
-	
-	lpcAnimator.add_player_spritesheet_layer(character_spritesheet)
+	character_inventory.initialize(lpcAnimator, "player")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -130,6 +97,7 @@ func add_item_to_inventory(item: item_data, amount: int):
 	character_inventory.add_item(item, amount)
 	OverworldUi.add_message("Added: " + item.item_name + " to Inventory")
 
+
 func check_items_in_inventory(item_to_check: String) -> bool:
 	return character_inventory.check_inventory_for_item(item_to_check)
 
@@ -138,6 +106,10 @@ func open_equipment_selection():
 	if player_state == Constants.CharacterStates.OVERWORLD:
 		if is_equipment_ui_open:
 			return
-		OverworldUi.open_equipment_control(character_inventory.get_all_items())
+		OverworldUi.open_equipment_control(character_inventory)
 		is_equipment_ui_open = true
 
+
+func close_equipment_selection():
+	if player_state == Constants.CharacterStates.OVERWORLD:
+		is_equipment_ui_open = false

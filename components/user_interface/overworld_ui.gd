@@ -2,6 +2,8 @@ extends Control
 
 class_name overworld_ui
 
+signal equipment_control_closed()
+
 var message_notification_preload = preload("res://scenes/UserInterface/message_notification.tscn")
 var message_notification
 
@@ -32,9 +34,9 @@ func close_message_notification():
 	
 
 
-func open_equipment_control(items: Array):
+func open_equipment_control(character_inventory: inventory):
 	# populate the list of items
-	equipment_control.initialize_items(items)
+	equipment_control.initialize_items(character_inventory)
 	
 	# make control visible
 	equipment_control.visible = true
@@ -42,6 +44,6 @@ func open_equipment_control(items: Array):
 	equipment_control.global_position = Vector2(576,0)
 
 
-
 func close_equipment_control():
 	equipment_control.visible = false
+	emit_signal("equipment_control_closed")

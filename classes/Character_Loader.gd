@@ -25,7 +25,7 @@ func set_character_spritesheet_profile(spritesheet_profile):
 	
 	for spritesheet in spritesheet_profile:
 		spritesheets.append(spritesheet)
-	
+
 	new_spritesheets.spritesheets_list = spritesheets
 	_player.player_data.base_spritesheets = new_spritesheets
 
@@ -57,10 +57,9 @@ func set_character_stats(character_json_stats: Dictionary):
 
 func get_character_stats():
 	return _player.player_data.base_stats
-	
-	
+
+
 # Load and apply character stats
 func load_character(loaded_player_data: player_base_data):
-	
 	_player.player_data.base_stats = loaded_player_data.base_stats
 	_player.player_data.base_spritesheets = loaded_player_data.base_spritesheets

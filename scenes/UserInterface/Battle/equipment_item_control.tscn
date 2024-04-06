@@ -1,9 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cju6o4366b88p"]
+[gd_scene load_steps=3 format=3 uid="uid://cju6o4366b88p"]
 
 [ext_resource type="Script" path="res://components/user_interface/equipment/equipment_item_control.gd" id="1_kwu1f"]
+[ext_resource type="Texture2D" uid="uid://djdtye145e80k" path="res://assets/user_iterface/panel_brown.png" id="2_io40s"]
 
 [node name="equipment_item_control" type="Control"]
-custom_minimum_size = Vector2(0, 72)
+custom_minimum_size = Vector2(0, 120)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,8 +16,12 @@ script = ExtResource("1_kwu1f")
 [node name="PanelContainer" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 0
-offset_right = 180.0
+offset_right = 200.0
 offset_bottom = 72.0
+
+[node name="image_background" type="TextureRect" parent="PanelContainer"]
+layout_mode = 2
+texture = ExtResource("2_io40s")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -24,11 +29,23 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(200, 120)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="label_item_name" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="label_item_name" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
-text = "Item Name"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="checkbox_item_equip" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_direction = 2
+layout_mode = 2
+disabled = true
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -39,3 +56,10 @@ layout_mode = 2
 [node name="button_equip_item" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/button_container"]
 layout_mode = 2
 text = "Equip"
+
+[node name="button_unequip_item" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/button_container"]
+layout_mode = 2
+text = "Unequip"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/button_container/button_equip_item" to="." method="_on_button_equip_item_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/button_container/button_unequip_item" to="." method="_on_button_unequip_item_pressed"]

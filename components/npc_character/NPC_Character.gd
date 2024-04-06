@@ -7,7 +7,7 @@ const Constants = preload("res://components/constants/Enumerations.gd")
 @export var character_data_path: String
 var character_data: Dictionary
 
-@onready var lpcAnimator = $LPCAnimatedSprite2D as LPCAnimatedSprite2D
+@onready var lpc_animator: LPCAnimatedSprite2D = $LPCAnimatedSprite2D
 @onready var characterAnimation = $CharacterAnimationComponent
 
 @export var speed = 200
@@ -25,8 +25,9 @@ var character_state: Constants.CharacterStates = Constants.CharacterStates.DEAD
 
 func _ready():
 	character_data = JsonLoader.load_json_by_path(character_data_path)
-	add_base_sheet("base", character_data["characterDefinition"]["characterPresetSpritePath"], 1)
-	characterAnimation.initialize(lpcAnimator)
+	var base_texture = load(character_data["characterDefinition"]["characterPresetSpritePath"])
+	lpc_animator.add_sheet("base", "", 1, base_texture, "npc")
+	characterAnimation.initialize(lpc_animator)
 	
 func _process(delta):
 	velocity = Vector2()
@@ -44,21 +45,6 @@ func _process(delta):
 	if follow_path:
 		characterAnimation.modify_move_animation_by_pathfollow(npc_position)
 
-# Using the file path of the selected part, append it to the LPC Array
-func add_base_sheet(spritesheet_type: String, sprite_path: String, layer: int):
-	var spritesheet_texture = load(sprite_path)
-	
-	var lpc_spritesheet: LPCSpriteSheet = LPCSpriteSheet.new()
-	lpc_spritesheet.SpriteSheet = spritesheet_texture
-	lpc_spritesheet.Name = "body"
-	lpc_spritesheet.SpriteType = LPCSpriteType.SpriteTypeEnum.Normal
-	
-	var character_spritesheet = CharacterSpritesheet.new()
-	character_spritesheet.spritesheet_type = spritesheet_type
-	character_spritesheet.spritesheet = lpc_spritesheet
-	character_spritesheet.spritesheet_layer = layer
-	
-	lpcAnimator.add_npc_spritesheet_layer(character_spritesheet)
 
 func start_follow_path():
 	print("Starting NPC Follow Path")

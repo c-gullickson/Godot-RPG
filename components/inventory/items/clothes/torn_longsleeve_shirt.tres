@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="clothing_item_data" load_steps=3 format=3 uid="uid://pq1py82twu4m"]
+
+[ext_resource type="Texture2D" uid="uid://ds055gyphjf44" path="res://assets/spritesheets/torso/clothes/longsleeve/male/sky.png" id="1_ky0k8"]
+[ext_resource type="Script" path="res://components/inventory/item_data/clothing_item_data.gd" id="2_7eryo"]
+
+[resource]
+script = ExtResource("2_7eryo")
+item_variation = 1
+item_category = 4
+item_name = "Torn Longsleeve Shirt"
+item_description = "Tattered, long sleeve shirt with some minor holes and tears."
+item_texture = ExtResource("1_ky0k8")
+item_type = 5
+item_z_position = 35
+item_weight = 0.0
+item_is_equipable = true
+is_item_equip = false

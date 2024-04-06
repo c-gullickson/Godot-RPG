@@ -23,6 +23,9 @@ var guard_interaction_cutscene_played: bool = false
 @onready var level_transitions = $cells_1/level_transitions
 var level_transition_dictionary: Dictionary = {}
 
+@onready var ragged_longsleeve_shirt = load("res://components/inventory/items/clothes/ragged_longsleeve_shirt.tres")
+@onready var ragged_pants = load("res://components/inventory/items/clothes/ragged_pants.tres")
+@onready var torn_longsleeve_shirt = load("res://components/inventory/items/clothes/torn_longsleeve_shirt.tres")
 @onready var cell_key = load("res://components/inventory/items/cell_key.tres")
 @onready var rusty_dagger = load("res://components/inventory/items/weapons/rusty_dagger.tres")
 
@@ -61,8 +64,11 @@ func _instantiate_player():
 	add_child(_player)
 	
 	if _player.player_overworld_transition == null:
-		_player.instantiate_new_player()
 		_player.position = player_spawn_position.position
+		_player.add_item_to_inventory(ragged_longsleeve_shirt, 1)
+		_player.add_item_to_inventory(ragged_pants, 1)
+		_player.add_item_to_inventory(torn_longsleeve_shirt, 1)
+		
 	else:
 		var player_entry_point = _player.player_overworld_transition.room_entry_point
 		var player_spawn_point = level_transition_dictionary[player_entry_point]

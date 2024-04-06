@@ -5,9 +5,12 @@
 
 [resource]
 script = ExtResource("1_ox601")
-item_type = 0
+item_category = 0
 item_name = "Dungeon Cell Key"
 item_description = "Old key to open cell doors in the dungon"
 item_texture = ExtResource("1_xsmla")
+item_type = 0
+item_z_position = 0
 item_weight = 0.0
 item_is_equipable = false
+is_item_equip = false

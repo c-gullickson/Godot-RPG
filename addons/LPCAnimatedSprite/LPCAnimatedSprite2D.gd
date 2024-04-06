@@ -3,6 +3,10 @@ extends Node2D
 
 class_name LPCAnimatedSprite2D
 
+const Constants = preload("res://components/constants/Enumerations.gd")
+const LPCSpriteType = preload("res://addons/LPCAnimatedSprite/LPCSpriteSheet.gd")
+const CharacterSpritesheet = preload("res://classes/Character_Spritesheet.gd")
+
 @export var SpriteSheets:Array[LPCSpriteSheet]
 @export var DefaultAnimation:LPCAnimation = LPCAnimation.IDLE_DOWN
 
@@ -45,29 +49,56 @@ func _ready():
 	if Engine.is_editor_hint() == false:
 		LoadAnimations()
 
-# Add a specific layer to the current layers available.
-# If layer exists, update
-# Sort and reapply all spritesheets
-func add_player_spritesheet_layer(lpc_character_spritesheet: Character_Spritesheet):
-	spritesheet_exists_index(lpc_character_spritesheet)
-	
-	SpriteSheets.clear()
-	for spritesheet in sort_spritesheets_by_layer(assigned_spritesheets):
-		SpriteSheets.append(spritesheet.spritesheet)
 
-	LoadAnimations()
-	CharacterLoader.set_character_spritesheet_profile(assigned_spritesheets)
-
-# Apply a new spritesheet layer for any npc character
-# Separate method due to not needing to save a character profile
-func add_npc_spritesheet_layer(npc_lpc_character_spritesheet: Character_Spritesheet):
-	spritesheet_exists_index(npc_lpc_character_spritesheet)
+# Using the file path of the selected part, append it to the LPC Array
+func add_sheet(spritesheet_type: String, new_sheet_path: String, layer: int, texture: Texture2D, character_type: String):
+	var full_path = ""
+	var spritesheet_texture
 	
-	SpriteSheets.clear()
-	for spritesheet in sort_spritesheets_by_layer(assigned_spritesheets):
-		SpriteSheets.append(spritesheet.spritesheet)
+	if new_sheet_path != "":
+		full_path = "res://Assets/spritesheets/" + new_sheet_path + ".png"
+		spritesheet_texture = load(full_path)
+	else:
+		spritesheet_texture = texture
 		
+	var lpc_spritesheet: LPCSpriteSheet = LPCSpriteSheet.new()
+	lpc_spritesheet.SpriteSheet = spritesheet_texture
+	lpc_spritesheet.Name = "body"
+	lpc_spritesheet.SpriteType = LPCSpriteType.SpriteTypeEnum.Normal
+	
+	var character_spritesheet: Character_Spritesheet = CharacterSpritesheet.new()
+	character_spritesheet.spritesheet_type = spritesheet_type
+	character_spritesheet.spritesheet = lpc_spritesheet
+	character_spritesheet.spritesheet_layer = layer
+	
+	spritesheet_exists_index(character_spritesheet)
+	
+	SpriteSheets.clear()
+	for spritesheet in sort_spritesheets_by_layer(assigned_spritesheets):
+		SpriteSheets.append(spritesheet.spritesheet)
+
 	LoadAnimations()
+	if character_type == "player":
+		CharacterLoader.set_character_spritesheet_profile(assigned_spritesheets)
+
+
+func remove_sheet(spritesheet_type, spritesheet_layer, character_type):
+	var index = 0
+	for existing_spritesheet: Character_Spritesheet in assigned_spritesheets:
+		if existing_spritesheet.spritesheet_type == spritesheet_type and existing_spritesheet.spritesheet_layer == spritesheet_layer:
+			assigned_spritesheets.remove_at(index)
+			break
+		else:
+			index += 1
+	
+	SpriteSheets.clear()
+	for spritesheet in sort_spritesheets_by_layer(assigned_spritesheets):
+		SpriteSheets.append(spritesheet.spritesheet)
+
+	LoadAnimations()
+	if character_type == "player":
+		CharacterLoader.set_character_spritesheet_profile(assigned_spritesheets)
+
 	
 # Using a dictionary of sprite parts, create a character
 func add_spritesheet_profile(spritesheet_profile: Array):

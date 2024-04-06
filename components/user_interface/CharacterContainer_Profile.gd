@@ -31,21 +31,8 @@ func connect_signal(character_selection: ButtonData):
 
 # Using the file path of the selected part, append it to the LPC Array
 func add_sheet(spritesheet_type: String, new_sheet_path: String, layer: int):
-	# Load a new spritesheet texture
-	var full_path = "res://Assets/spritesheets/" + new_sheet_path + ".png"
-	var spritesheet_texture = load(full_path)
 	
-	var lpc_spritesheet: LPCSpriteSheet = LPCSpriteSheet.new()
-	lpc_spritesheet.SpriteSheet = spritesheet_texture
-	lpc_spritesheet.Name = "body"
-	lpc_spritesheet.SpriteType = LPCSpriteType.SpriteTypeEnum.Normal
-	
-	var character_spritesheet: Character_Spritesheet = Character_Spritesheet.new()
-	character_spritesheet.spritesheet_type = spritesheet_type
-	character_spritesheet.spritesheet = lpc_spritesheet
-	character_spritesheet.spritesheet_layer = layer
-	
-	lpc_profile.add_player_spritesheet_layer(character_spritesheet)
+	lpc_profile.add_sheet(spritesheet_type, new_sheet_path, layer, null, "player" )
 	_set_image()
 
 # Private => set the texture of the character to the lpc_profile animated sprite 2d
