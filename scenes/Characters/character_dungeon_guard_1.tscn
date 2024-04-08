@@ -13,7 +13,6 @@ size = Vector2(20, 30)
 [node name="character_dungeon_guard_1" type="CharacterBody2D"]
 script = ExtResource("1_tstq2")
 character_data_path = "res://assets/npc_characters/dungeon_guard_1/data.json"
-speed = 600
 
 [node name="LPCAnimatedSprite2D" type="Node2D" parent="."]
 script = ExtResource("1_uir6y")

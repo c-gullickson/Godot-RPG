@@ -31,7 +31,7 @@ func set_character_spritesheet_profile(spritesheet_profile):
 
 # Get and set the character default stats object
 func set_character_stats(character_json_stats: Dictionary):
-	var new_stats: player_stats = player_stats.new()
+	var new_stats: character_stats = character_stats.new()
 	
 	var class_stats = []
 	var class_attributes = []
@@ -39,6 +39,7 @@ func set_character_stats(character_json_stats: Dictionary):
 		var new_class_stat = stat.new()
 		new_class_stat.stat_type = class_stat["statType"]
 		new_class_stat.stat_name = class_stat["statName"]
+		new_class_stat.current_stat_value = class_stat["currentStatValue"]
 		new_class_stat.max_stat_value = class_stat["maxStatValue"]
 		class_stats.append(new_class_stat)
 		
@@ -46,7 +47,7 @@ func set_character_stats(character_json_stats: Dictionary):
 		var new_class_attribute = attribute.new()
 		new_class_attribute.attribute_type = class_attribute["attributeType"]
 		new_class_attribute.attribute_name = class_attribute["attributeName"]
-		new_class_attribute.max_attribute_value = class_attribute["maxAttributeValue"]
+		new_class_attribute.attribute_value = class_attribute["attributeValue"]
 		class_attributes.append(new_class_attribute)
 		
 	new_stats.stats_list = class_stats

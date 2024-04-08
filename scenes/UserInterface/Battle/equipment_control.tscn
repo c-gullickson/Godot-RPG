@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cr6e2wlbcqnox"]
+[gd_scene load_steps=5 format=3 uid="uid://cr6e2wlbcqnox"]
 
 [ext_resource type="Script" path="res://components/user_interface/battle controller/equipment_control.gd" id="1_14yy6"]
 [ext_resource type="Texture2D" uid="uid://ff4afmwgshoq" path="res://assets/user_iterface/panel_beige.png" id="2_7lc2u"]
 [ext_resource type="Texture2D" uid="uid://re3gdk48f6qj" path="res://assets/user_iterface/panel_blue.png" id="2_lxhkq"]
+[ext_resource type="Script" path="res://components/user_interface/equipment/equipment_container_manager.gd" id="4_kwvdq"]
 
 [node name="equipment_control" type="Control"]
 layout_mode = 3
@@ -76,61 +77,84 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="equip_container" type="MarginContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="equipment_container_manager" type="MarginContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(750, 0)
 layout_mode = 2
 theme_override_constants/margin_left = 20
+script = ExtResource("4_kwvdq")
 
-[node name="TabContainer" type="TabContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equip_container"]
+[node name="TabContainer" type="TabContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equipment_container_manager"]
 layout_mode = 2
-current_tab = 1
 
-[node name="clothes_container" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equip_container/TabContainer"]
+[node name="armor_container" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equipment_container_manager/TabContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/equipment_container_manager/TabContainer/armor_container"]
+layout_mode = 2
+text = "Armor"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equipment_container_manager/TabContainer/armor_container"]
+layout_mode = 2
+
+[node name="armor_items" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equipment_container_manager/TabContainer/armor_container/ScrollContainer"]
+layout_mode = 2
+
+[node name="weapon_container" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equipment_container_manager/TabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/equip_container/TabContainer/clothes_container"]
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/equipment_container_manager/TabContainer/weapon_container"]
+layout_mode = 2
+text = "Weapons"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equipment_container_manager/TabContainer/weapon_container"]
+layout_mode = 2
+
+[node name="weapon_items" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equipment_container_manager/TabContainer/weapon_container/ScrollContainer"]
+layout_mode = 2
+
+[node name="magic_container" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equipment_container_manager/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/equipment_container_manager/TabContainer/magic_container"]
+layout_mode = 2
+text = "Magic"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equipment_container_manager/TabContainer/magic_container"]
+layout_mode = 2
+
+[node name="magic_items" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equipment_container_manager/TabContainer/magic_container/ScrollContainer"]
+layout_mode = 2
+
+[node name="potion_container" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equipment_container_manager/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/equipment_container_manager/TabContainer/potion_container"]
+layout_mode = 2
+text = "Potions"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equipment_container_manager/TabContainer/potion_container"]
+layout_mode = 2
+
+[node name="potion_items" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equipment_container_manager/TabContainer/potion_container/ScrollContainer"]
+layout_mode = 2
+
+[node name="clothes_container" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equipment_container_manager/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/equipment_container_manager/TabContainer/clothes_container"]
 layout_mode = 2
 text = "Clothes
 "
 
-[node name="armor_container" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equip_container/TabContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equipment_container_manager/TabContainer/clothes_container"]
+custom_minimum_size = Vector2(400, 220)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/equip_container/TabContainer/armor_container"]
+[node name="clothes_items" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equipment_container_manager/TabContainer/clothes_container/ScrollContainer"]
 layout_mode = 2
-text = "Armor"
-
-[node name="weapon_container" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equip_container/TabContainer"]
-visible = false
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/equip_container/TabContainer/weapon_container"]
-layout_mode = 2
-text = "Weapons"
-
-[node name="magic_container" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equip_container/TabContainer"]
-visible = false
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/equip_container/TabContainer/magic_container"]
-layout_mode = 2
-text = "Magic"
-
-[node name="potion_container" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equip_container/TabContainer"]
-visible = false
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/equip_container/TabContainer/potion_container"]
-layout_mode = 2
-text = "Potions"
-
-[node name="misc_container" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer/equip_container/TabContainer"]
-visible = false
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/equip_container/TabContainer/misc_container"]
-layout_mode = 2
-text = "Potions"
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/header_container/container_button_close" to="." method="_on_container_button_close_pressed"]

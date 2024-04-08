@@ -1,8 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://d17dfebaascbs"]
+[gd_scene load_steps=10 format=3 uid="uid://d17dfebaascbs"]
 
 [ext_resource type="Script" path="res://components/battle/battle_dungeon.gd" id="1_p3md8"]
 [ext_resource type="TileSet" uid="uid://dkn42v8d7gn57" path="res://assets/tilemaps/lpc_tileset.tres" id="1_uv5f4"]
 [ext_resource type="PackedScene" uid="uid://buhyr3g8xwjxl" path="res://scenes/UserInterface/Battle/battle_control.tscn" id="3_au55l"]
+
+[sub_resource type="Curve2D" id="Curve2D_pxjbw"]
+
+[sub_resource type="Curve2D" id="Curve2D_jex10"]
+
+[sub_resource type="Curve2D" id="Curve2D_3uyds"]
+
+[sub_resource type="Curve2D" id="Curve2D_ekcmp"]
+
+[sub_resource type="Curve2D" id="Curve2D_u7nx4"]
+
+[sub_resource type="Curve2D" id="Curve2D_kyi78"]
 
 [node name="BattleDungeon" type="Node2D"]
 script = ExtResource("1_p3md8")
@@ -27,15 +39,32 @@ size_flags_horizontal = 4
 metadata/_edit_use_anchors_ = true
 
 [node name="player_spawn_points" type="Node2D" parent="."]
-position = Vector2(250, 250)
+position = Vector2(174, 250)
 
 [node name="slot_1" type="Node2D" parent="player_spawn_points"]
 position = Vector2(0, -80)
 
+[node name="slot_1_path" type="Path2D" parent="player_spawn_points/slot_1"]
+curve = SubResource("Curve2D_pxjbw")
+
+[node name="slot_1_path_follow" type="PathFollow2D" parent="player_spawn_points/slot_1/slot_1_path"]
+
 [node name="slot_2" type="Node2D" parent="player_spawn_points"]
+
+[node name="slot_2_path" type="Path2D" parent="player_spawn_points/slot_2"]
+curve = SubResource("Curve2D_jex10")
+
+[node name="slot_2_path_follow" type="PathFollow2D" parent="player_spawn_points/slot_2/slot_2_path"]
+position = Vector2(353, 0)
+rotation = 3.14159
 
 [node name="slot_3" type="Node2D" parent="player_spawn_points"]
 position = Vector2(0, 80)
+
+[node name="slot_3_path" type="Path2D" parent="player_spawn_points/slot_3"]
+curve = SubResource("Curve2D_3uyds")
+
+[node name="slot_3_path_follow" type="PathFollow2D" parent="player_spawn_points/slot_3/slot_3_path"]
 
 [node name="enemy_spawn_points" type="Node2D" parent="."]
 position = Vector2(900, 250)
@@ -43,7 +72,25 @@ position = Vector2(900, 250)
 [node name="slot_1" type="Node2D" parent="enemy_spawn_points"]
 position = Vector2(0, -80)
 
+[node name="slot_1_path" type="Path2D" parent="enemy_spawn_points/slot_1"]
+curve = SubResource("Curve2D_ekcmp")
+
+[node name="slot_1_path_follow" type="PathFollow2D" parent="enemy_spawn_points/slot_1/slot_1_path"]
+
 [node name="slot_2" type="Node2D" parent="enemy_spawn_points"]
+
+[node name="slot_2_path" type="Path2D" parent="enemy_spawn_points/slot_2"]
+curve = SubResource("Curve2D_u7nx4")
+
+[node name="slot_2_path_follow" type="PathFollow2D" parent="enemy_spawn_points/slot_2/slot_2_path"]
 
 [node name="slot_3" type="Node2D" parent="enemy_spawn_points"]
 position = Vector2(0, 80)
+
+[node name="slot_3_path" type="Path2D" parent="enemy_spawn_points/slot_3"]
+curve = SubResource("Curve2D_kyi78")
+
+[node name="slot_3_path_follow" type="PathFollow2D" parent="enemy_spawn_points/slot_3/slot_3_path"]
+
+[node name="center_attack_point" type="Node2D" parent="."]
+position = Vector2(527, 250)

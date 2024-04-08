@@ -7,46 +7,56 @@
 			"characterName": "Dungeon Guard",
 			"characterPresetSpritePath": "res://assets/npc_characters/dungeon_guard_1/dungeon_guard_1.png",
 			"startingGear": [],
-			"classStats":[
-				{
-					"statType": "health",
-					"statName": "Health",
-					"maxStatValue": 100,
-				},
-				{
-					"statType": "stamina",
-					"statName": "Stamina",
-					"maxStatValue": 100,
-				},
-				{
-					"statType": "magic",
-					"statName": "Magic",
-					"maxStatValue": 100,
-				}
-			],
-			"classAttributes":[
-				{
-					"attributeType": "moveSpeed",
-					"attributeName": "Move Speed",
-					"maxAttributeValue": 200
-				},
-				{
-					"attributeType": "damageResistance",
-					"attributeName": "Damage Resistance",
-					"maxAttributeValue": 10
-				},
-				{
-					"attributeType": "magicResistance",
-					"attributeName": "Magic Resistance",
-					"maxAttributeValue": 0
-				},
-				{
-					"attributeType": "carryWeight",
-					"attributeName": "Carry Weight",
-					"maxAttributeValue": 100
-				}
-			],
-			"battlePosition": 1,
-			"characterDeathDialog": "guard_1_defeated"
-		}
+			"stats": {
+				"classStats":[
+					{
+						"statType": "health",
+						"statName": "Health",
+						"currentStatValue": 100,
+						"maxStatValue": 100,
+					},
+					{
+						"statType": "stamina",
+						"statName": "Stamina",
+						"currentStatValue": 100,
+						"maxStatValue": 100,
+					},
+					{
+						"statType": "magic",
+						"statName": "Magic",
+						"currentStatValue": 100,
+						"maxStatValue": 100,
+					}
+				],
+				"classAttributes":[
+					{
+						"attributeType": "overworldSpeed",
+						"attributeName": "Overworld Speed",
+						"attributeValue": 200
+					},
+					{
+						"attributeType": "battleSpeed",
+						"attributeName": "Battle Speed",
+						"attributeValue": 200
+					},
+					{
+						"attributeType": "damageResistance",
+						"attributeName": "Damage Resistance",
+						"attributeValue": 10
+					},
+					{
+						"attributeType": "magicResistance",
+						"attributeName": "Magic Resistance",
+						"attributeValue": 0
+					},
+					{
+						"attributeType": "carryWeight",
+						"attributeName": "Carry Weight",
+						"attributeValue": 100
+					}
+				]
+		},
+		"battlePosition": 1,
+		"characterDeathDialog": "guard_1_defeated"
+	}
 }

@@ -50,9 +50,10 @@ func _load_character_creation_file():
 # Set the base character stats based on the class
 # Initialize a new tab for each part type 
 func _parse_character_creation_data():
+	var character_data = _character_creation_data["characterDefinition"]
 	var creation_data = _character_creation_data["characterCreation"]
 	_character_container_profile.add_character_base(creation_data["body"])
-	CharacterLoader.set_character_stats(creation_data["characterStats"])
+	CharacterLoader.set_character_stats(character_data["stats"])
 	# Sort through the list of character parts
 	for character_part in creation_data["partType"]:
 		# Generate a new Container

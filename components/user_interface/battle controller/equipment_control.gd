@@ -6,7 +6,7 @@ signal close_equipment_control()
 var item_list_data_container_preload = preload("res://scenes/UserInterface/Battle/equipment_item_control.tscn")
 
 @onready var items_container: VBoxContainer = $PanelContainer/VBoxContainer/HBoxContainer/items_container/VBoxContainer/ScrollContainer/items
-
+@onready var _equipment_container = $PanelContainer/VBoxContainer/HBoxContainer/equipment_container_manager
 var _items_container_list: Array = []
 var _character_inventory: inventory
 
@@ -46,6 +46,7 @@ func _on_container_button_close_pressed():
 
 # Delegate the action of equiping the item to the player
 func equip_item_to_character(item: item_data):
+	_equipment_container.add_item_to_container(item)
 	_character_inventory.equip_item_in_inventory(item)
 	
 

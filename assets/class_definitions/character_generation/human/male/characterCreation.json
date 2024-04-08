@@ -1,49 +1,66 @@
 {
-	"characterCreation": {
+	"characterDefinition" : 
+	{
 		"classType": "human",
 		"gender": "male",
-		"body": "res://Assets/sheet_definitions/body.json",
-		"characterStats": {
+		"body": "",
+		"characterName": "player",
+		"characterPresetSpritePath": "",
+		"startingGear": [],
+		"stats": {
 			"classStats":[
 				{
 					"statType": "health",
 					"statName": "Health",
+					"currentStatValue": 100,
 					"maxStatValue": 100,
 				},
 				{
 					"statType": "stamina",
 					"statName": "Stamina",
+					"currentStatValue": 100,
 					"maxStatValue": 100,
 				},
 				{
 					"statType": "magic",
 					"statName": "Magic",
+					"currentStatValue": 100,
 					"maxStatValue": 100,
 				}
 			],
 			"classAttributes":[
 				{
-					"attributeType": "moveSpeed",
-					"attributeName": "Move Speed",
-					"maxAttributeValue": 200
+					"attributeType": "overworldSpeed",
+					"attributeName": "Overworld Speed",
+					"attributeValue": 100
+				},
+				{
+					"attributeType": "battleSpeed",
+					"attributeName": "Battle Speed",
+					"attributeValue": 200
 				},
 				{
 					"attributeType": "damageResistance",
 					"attributeName": "Damage Resistance",
-					"maxAttributeValue": 10
+					"attributeValue": 10
 				},
 				{
 					"attributeType": "magicResistance",
 					"attributeName": "Magic Resistance",
-					"maxAttributeValue": 0
+					"attributeValue": 0
 				},
 				{
 					"attributeType": "carryWeight",
 					"attributeName": "Carry Weight",
-					"maxAttributeValue": 100
+					"attributeValue": 100
 				}
-			],
-		},
+			]
+		}
+	},
+	"characterCreation": {
+		"classType": "human",
+		"gender": "male",
+		"body": "res://Assets/sheet_definitions/body.json",
 		"partType": [
 			{
 				"container": "headContainer",

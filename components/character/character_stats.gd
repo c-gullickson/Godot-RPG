@@ -1,6 +1,6 @@
 extends Resource
 
-class_name player_stats
+class_name character_stats
 
 # Will be a list of the base_stat.gd
 @export var stats_list: Array

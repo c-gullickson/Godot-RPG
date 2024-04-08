@@ -1,14 +1,8 @@
-extends CharacterBody2D
+extends character_base
 class_name player_character
 
-const Constants = preload("res://components/constants/Enumerations.gd")
-
-@onready var lpcAnimator: LPCAnimatedSprite2D = $LPCAnimatedSprite2D
-@onready var characterAnimation = $CharacterAnimationComponent
 @onready var character_inventory: inventory = $CharacterInventoryComponent
 
-@export var speed = 200
-@export var move_direction = Constants.MoveDirection.SOUTH
 
 var player_data: player_base_data = player_base_data.new()
 var LPCSpriteType = preload("res://addons/LPCAnimatedSprite/LPCSpriteSheet.gd")
@@ -18,31 +12,30 @@ var can_use_player_input: bool = true
 var player_state: Constants.CharacterStates = Constants.CharacterStates.OVERWORLD
 
 var player_overworld_transition: overworld_transition
-
 var is_equipment_ui_open: bool = false
 
 func _ready():
 	OverworldUi.connect("equipment_control_closed", Callable(self, "close_equipment_selection"))
-	#TODO: Should change character_data to character profile, where inventory, stats and more are loaded
-	#character_data = CharacterLoader.get_character_stats()
 	var player = CharacterLoader.get_player()
 	player_data = player.player_data
+	set_character_stats(player_data.base_stats)
 	
-	lpcAnimator.add_spritesheet_profile(player_data.base_spritesheets.spritesheets_list)
-	characterAnimation.initialize(lpcAnimator)
-	character_inventory.initialize(lpcAnimator, "player")
+	lpc_animator.add_spritesheet_profile(player_data.base_spritesheets.spritesheets_list)
+	character_animation.initialize(lpc_animator)
+	character_inventory.initialize(lpc_animator, "player")
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
+	# Listen for key inputs
 	if Input.is_key_pressed(KEY_SPACE):
 		print("Open Character Inventory")
 		open_equipment_selection()
 	
 	# Get and calculate the velocity to move the unit based on user input
 	velocity = movement_input() * speed
-	characterAnimation.modify_move_animation(velocity, move_direction)
+	character_animation.modify_move_animation(velocity, move_direction)
 	
 	move_and_slide()
 

@@ -19,8 +19,8 @@ func initialize_item(item: item_data):
 	_item = item
 	add_item_name(item.item_name)
 	set_item_equip(item)
-	
-	
+
+
 # Add a name to the item
 func add_item_name(item_name: String):
 	item_label.text = item_name
